@@ -4,6 +4,183 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras.ocean@%5E3.5.x/dist/aframe-extras.ocean.min.js"></script>
+    <script src="https://unpkg.com/aframe-gradient-sky@1.0.4/dist/gradientsky.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.1.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
+    <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-ground-component@0.0.4/dist/aframe-ground-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-snapto-component/dist/aframe-snapto-component.js"></script>
+
+    <script src="https://unpkg.com/aframe-touch-inspector@1.1.2/dist/aframe-inspector.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@4.3.1/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script>
+    <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script>
+    <script src="https://unpkg.com/aframe-datgui-component/dist/aframe-datgui-component.min.js"></script>
+    <script src="https://cdn.rawgit.com/gftruj/aframe-physics-spring/master/dist/aframe-spring.min.js"></script>
+    <script src="https://unpkg.com/aframe-spherical-controls-component/dist/aframe-spherical-controls-component.min.js"></script>
+    <script src="https://rawgit.com/chenzlabs/auto-detect-controllers/master/dist/aframe-auto-detect-controllers-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-gltf-helpers@0.0.2/dist/aframe-gltf-helpers.min.js"></script>
+    <script src="https://rawgit.com/dbradleyfl/aframe-gridhelper/master/dist/aframe-gridhelper-component.min.js"></script>
+    <script src="https://rawgit.com/dbradleyfl/aframe-selectable-light-component/master/dist/aframe-selectable-light-component.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aframe-connecting-line@0.1.0/index.min.js"></script>
+
+    <script src="js/aframe-extras.min.js"></script>
+    <script src="js/aframe-extras.controls.mih.js"></script>
+    <script src="js/aframe-extras.misc.js"></script>
+    <script src="js/aframe-extras.loaders.js"></script>
+    <script src="js/aframe-extras.pathfinding.js"></script>
+    <script src="js/aframe-extras.primitives.js"></script>
+    <script src="js/aframe-point-component.min.js"></script>
+    <script src="js/aframe-alongpath-component.min.js"></script>
+    <script src="js/aframe-layout-component.min.js"></script>
+    <script src="js/aframe-screenshot-component.min.js"></script>
+    <script src="js/aframe-gltfutils.min.js"></script>
+
+    <script src="aframe-gui.min.js"></script>
+    <script src="aframe-tooltip-componemt.min.js"></script>
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js" ></script>
+
+    <script src="js/grab.js"></script>
+    <script src="js/grab.min.js"></script>
+    <script src="js/grab-lock.js"></script>
+    <script src="js/GLTFPart.js"></script>
+    <script src="js/Vartiste.js"></script>
+
+    <script src="js/RegisteredAF.js"></script>
+    <script src="js/manipulator.js"></script>
+    <script src="js/movement-controls.js"></script>
+    <script src="js/PointCloudPLY.js"></script>
+
+    <script src="js/aframe-drag-and-drop-component.min.js"></script>
+    <script src="js/aframe-crawling-cursor.min.js"></script>
+    <script src="aframe-mouse-cursor-component.min.js"></script>
+    <script src="aframe-gltf-exporter-component.min.js"></script>
+
+    <!--reaction components-->
+    <script src="reaction_components/clickable.js"></script>
+    <script src="reaction_components/draggable.js"></script>
+    <script src="reaction_components/drag-droppable.js"></script>
+    <script src="reaction_components/hoverable.js"></script>
+    <script src="reaction_components/stretchable.js"></script>
+    <script src="reaction_components/droppable.js"></script>
+    <script src="reaction_components/grabbable.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="aframe.css">
+
+    <script>
+        AFRAME.registerComponent('click-impulse', {
+            init: function () {
+                var el = this.el;
+
+                el.addEventListener('click', function () {
+                    el.body.applyImpulse(
+                        /* impulse */
+                        new CANNON.Vec3(
+                            THREE.Math.randInt(-20, 20),
+                            THREE.Math.randInt(-20, 20),
+                            THREE.Math.randInt(-20, 20)
+                        ),
+                                                /* world position */ new CANNON.Vec3().copy(el.getDOMAttribute('position'))
+                    );
+                });
+
+            }
+        });
+
+        // forward mouse and touch events to the super-hands entity
+        AFRAME.registerComponent('capture-mouse', {
+            init: function () {
+                this.eventRepeater = this.eventRepeater.bind(this)
+                this.el.sceneEl.addEventListener('loaded', () => {
+                    this.el.sceneEl.canvas.addEventListener('mousedown', this.eventRepeater)
+                    this.el.sceneEl.canvas.addEventListener('mouseup', this.eventRepeater)
+                    this.el.sceneEl.canvas.addEventListener('touchstart', this.eventRepeater)
+                    this.el.sceneEl.canvas.addEventListener('touchmove', this.eventRepeater)
+                    this.el.sceneEl.canvas.addEventListener('touchend', this.eventRepeater)
+                }, { once: true })
+            },
+            eventRepeater: function (evt) {
+                if (evt.type.startsWith('touch')) {
+                    evt.preventDefault()
+                    // avoid repeating touchmove because it interferes with look-controls
+                    if (evt.type === 'touchmove') { return }
+                }
+                this.el.emit(evt.type, evt.detail)
+            }
+        })
+    </script>
+	<!--DRAG-N-DROP-->
+	
+	-->
+    <script src=" https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+    <style>
+        .button:hover {
+            background-color: #fff;
+            color: blue;
+        }
+
+        .button {
+            background-color: blue;
+            border-radius: 2px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 12px;
+            height: 24px;
+            margin-top: 5px;
+            margin-left: 5px;
+            outline: none;
+            position: relative;
+            width: 100px;
+            z-index: 999;
+        }
+
+        #container {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+<script>	
+	Function() {
+	import { EXTTextureWebP } from '@gltf-transform/extensions';
+	
+	// Create an Extension attached to the Document.
+	const webpExtension = document.createExtension(EXTTextureWebP)
+	    .setRequired(true);
+	document.createTexture('MyWebPTexture')
+	    .setMimeType('image/webp')
+	    .setImage(fs.readFileSync('my-texture.webp'));
+	}
+</script>
+
+
+    
+    <script src="aframe-inspector.min.js" ></script>
+    
+    <script src="" ></script>
+    <script src="" ></script>
+    <script src="" ></script>
+    <script src="" ></script>
+    <script src="" ></script>
+
+
+
+
+
+
+
+    
     <link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
     <link rel="stylesheet" href="./style.css">
     <title>
@@ -15,7 +192,7 @@
 
 <body>
 
-    <div class="topnav" id="myTopnav">
+    <!---div class="topnav" id="myTopnav">
         <a href="#" class="icon1"><img src="logo33.png" style="width:32px;height:32px" />  CAD-BOXX.COM</a>
 
         <a href="./store.html">Store</a>
@@ -62,77 +239,25 @@
         <i class="fa fa-facebook" style="padding-right: 2%" href="https://facebook.com"></i>
         <i class="fa fa-instagram" style="padding-right: 2%" href="https://instagram.com"></i>
         <i class="fa fa-twitter" href="https://twitter.com"></i>
-    </div>
+</div-->
+
+    <a-scene>
+        <a-assets>
+            
+        </a-assets>
 
 
 
 
 
-    <script>
-function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-    </script>
+        
+    </a-scene>
+
+
 
 </body>
 
-  <script type="text/javascript" src="script.js"></script
-  ><!-- ... -->
-  <script type="text/javascript" src="aframe-ammo-constraints.js"></script
-  ><!-- ... -->
-  <script type="text/javascript" src="aframe-gltf.js"></script
-  ><!-- ... -->
-  <script>
-    function exportGLTF(input, options) {
-      AFRAME.scenes[0].systems["gltf-exporter"].export(input, options);
-    }
 
-    document
-      .getElementById("export-scene")
-      .addEventListener("click", function() {
-        exportGLTF();
-      });
-
-    document
-      .getElementById("export-scene-bin")
-      .addEventListener("click", function() {
-        exportGLTF(undefined, { binary: true });
-      }); //replace with  NEW/OPEN
-
-    document
-      .getElementById("export-sphere")
-      .addEventListener("click", function() {
-        exportGLTF(document.getElementById("yellowSphere"), { binary: true });
-      }); //REPLACE WITH LOAD/POSITION
-
-    document.getElementById("export-two").addEventListener("click", function() {
-      exportGLTF([
-        document.getElementById("blueBox"),
-        document.getElementById("yellowSphere")
-      ]);
-    }); //REPLACE WITH SAVE
-
-    document
-      .getElementById("export-selector")
-      .addEventListener("click", function() {
-        exportGLTF(document.querySelectorAll("[geometry='primitive: box']"));
-      });
-  </script>
-
-  <script>
-    //add a-plane as per this and then add new entity / position
-    var entity = document.createElement("a-entity");
-    scene.appendChild(entity);
-    entity.setAttribute("position", { x: 0, y: 1, z: 2 });
-    entity.addEventListener("loaded", function() {
-      console.log(entity.getAttribute("position"));
-    });
-  </script>
 </html>
 
 
